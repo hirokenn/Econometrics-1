@@ -1,0 +1,92 @@
+\documentclass[a4paper,11pt]{article}
+
+\usepackage{comment}
+\usepackage{bbm}
+\usepackage{float}
+\usepackage{pgfpages}
+\usepackage{csquotes}
+\usepackage{booktabs}
+\usepackage{amsmath,amssymb}
+\usepackage{amsthm}
+\usepackage{graphicx}
+\usepackage{multicol}
+\usepackage{mathtools}
+\usepackage{mathrsfs}
+\usepackage{color}
+\usepackage{eucal}
+\usepackage{graphicx}
+\usepackage{csquotes}
+\usepackage{bm}
+\usepackage[colorlinks=true, linkcolor=black, urlcolor=black, citecolor=blue]{hyperref}
+
+\newcommand{\argmax}{\mathop{\mathrm{argmax}}\limits}
+
+\title{\vspace{-20mm}Problem Set 1}
+\author{29256505 Masato Eguchi}
+\date{}
+
+\begin{document}
+\maketitle
+
+\section*{4}
+We have
+\begin{align*}
+    (\bm{b}_1',\bm{b}_2')'&=(\bm{X}'\bm{X})^{-1}\bm{X}'\bm{y}\\
+    &=\left(\begin{pmatrix}\bm{X}_1'\\\bm{X}_2'\end{pmatrix}(\bm{X}_1,\bm{X}_2)\right)^{-1}\begin{pmatrix}\bm{X}_1'\\\bm{X}_2'\end{pmatrix}\bm{y}\\
+    &=\begin{pmatrix}\bm{X}_1'\bm{X}_1&\bm{X}_1'\bm{X}_2\\\bm{X}_2'\bm{X}_1&\bm{X}_2'\bm{X}_2\end{pmatrix}^{-1}\begin{pmatrix}\bm{X}_1'\bm{y}\\\bm{X}_2'\bm{y}\end{pmatrix}\\
+    &=\begin{pmatrix}\bm{X}_1'\bm{X}_1&\bm{0}\\\bm{0}&\bm{X}_2'\bm{X}_2\end{pmatrix}^{-1}\begin{pmatrix}\bm{X}_1'\bm{y}\\\bm{X}_2'\bm{y}\end{pmatrix},
+\end{align*}
+where the last equality follows from the assumption that $\bm{X}_1'\bm{X}_2=\bm{0}$ and $\bm{X}_2'\bm{X}_1=\bm{0}$. Since 
+\begin{equation*}
+    \begin{pmatrix}\bm{X}_1'\bm{X}_1&\bm{0}\\\bm{0}&\bm{X}_2'\bm{X}_2\end{pmatrix}\begin{pmatrix}(\bm{X}_1'\bm{X}_1)^{-1}&\bm{0}\\\bm{0}&(\bm{X}_2'\bm{X}_2)^{-1}\end{pmatrix}=\bm{I}_k,
+\end{equation*}
+where $\bm{I}_k$ is a $k\times k$ identity matrix, we have
+\begin{align*}
+    \begin{pmatrix}\bm{b}_1\\\bm{b}_2\end{pmatrix}&=\begin{pmatrix}(\bm{X}_1'\bm{X}_1)^{-1}&\bm{0}\\\bm{0}&(\bm{X}_2'\bm{X}_2)^{-1}\end{pmatrix}\begin{pmatrix}\bm{X}_1'\bm{y}\\\bm{X}_2'\bm{y}\end{pmatrix}\\
+    &=\begin{pmatrix}(\bm{X}_1'\bm{X}_1)^{-1}\bm{X}_1'\bm{y}\\(\bm{X}_2'\bm{X}_2)^{-1}\bm{X}_2'\bm{y}\end{pmatrix}\\
+    &=\begin{pmatrix}\widetilde{\bm{b}_1}\\\bm{b}_2\end{pmatrix}.
+\end{align*}\qed
+
+\section*{6}
+Let $e_i=y_i-\hat{y}_i$. We first show $\sum_{i=1}^n\bm{x}_ie_i=0$. Since we have 
+\begin{align*}
+    \bm{b}&=(\bm{X}'\bm{X})^{-1}\bm{X}'\bm{Y}\\
+    &=\left((\bm{x}_1,\dots,\bm{x}_n)\begin{pmatrix}\bm{x}_1'\\\vdots\\\bm{x}_n'\end{pmatrix}\right)^{-1}(\bm{x}_1,\dots,\bm{x}_n)\begin{pmatrix}y_1\\\vdots\\y_n\end{pmatrix}\\
+    &=\left(\sum_{i=1}^n\bm{x}_i\bm{x}_i'\right)^{-1}\left(\sum_{i=1}^n\bm{x}_i y_i\right),
+\end{align*}
+It follows that 
+\begin{align*}
+    \sum_{i=1}^n\bm{x}_ie_i&=\sum_{i=1}^n\bm{x}_i(y_i-\hat{y}_i)\\
+    &=\sum_{i=1}^n\bm{x}_i\left(y_i-\bm{x}_i'\bm{b}\right)\\
+    &=\sum_{i=1}^n\bm{x}_i y_i-\sum_{i=1}^n\bm{x}_i\bm{x}_i'\bm{b}\\
+    &=\sum_{i=1}^n\bm{x}_i y_i-\sum_{i=1}^n\bm{x}_i\bm{x}_i'\left(\sum_{j=1}^n\bm{x}_j\bm{x}_j'\right)^{-1}\left(\sum_{j=1}^n\bm{x}_j y_j\right)\\
+    &=\sum_{i=1}^n\bm{x}_i y_i-\sum_{i=1}^n\bm{x}_i y_i\\
+    &=\bm{0}.
+\end{align*}
+Thus, we have 
+\begin{align*}
+    \sum_{i=1}^n\hat{y}_ie_i&=\sum_{i=1}^n\bm{x}_i'\bm{b}e_i\\
+    &=\sum_{i=1}^n\bm{b}'\bm{x}_ie_i\\
+    &=\bm{b}'\sum_{i=1}^n\bm{x}_ie_i\\
+    &=0.
+\end{align*}
+Also, let $\bar{\hat{y}}=\frac{1}{n}\sum_{i=1}^n\hat{y}_i$. Then we have
+\begin{align*}
+    \bar{\hat{y}}&=\frac{1}{n}\sum_{i=1}^n\hat{y}_i\\
+    &=\frac{1}{n}\sum_{i=1}^n(y_i-e_i)\\
+    &=\frac{1}{n}\sum_{i=1}^ny_i-\frac{1}{n}\sum_{i=1}^ne_i\\
+    &=\bar{y}.
+\end{align*}
+Now, denote the sample correlation coefficient between $y_i$ and $\hat{y}_i$ by $r$. We have
+\begin{align*}
+    r^2&=\left(\frac{\sum_{i=1}^n(y_i-\bar{y})(\hat{y}_i-\bar{\hat{y}})}{\sqrt{\sum_{i=1}^n(y_i-\bar{y})^2\sum_{i=1}^n(\hat{y}_i-\bar{\hat{y}})^2}}\right)^2\\
+    &=\left(\frac{\sum_{i=1}^n(y_i-\bar{y})(\hat{y}_i-\bar{y})}{\sqrt{\sum_{i=1}^n(y_i-\bar{y})^2\sum_{i=1}^n(\hat{y}_i-\bar{y})^2}}\right)^2\\
+    &=\left(\frac{\sum_{i=1}^n(\hat{y}_i+e_i-\bar{y})(\hat{y}_i-\bar{y})}{\sqrt{\sum_{i=1}^n(y_i-\bar{y})^2\sum_{i=1}^n(\hat{y}_i-\bar{y})^2}}\right)^2\\
+    &=\left(\frac{\sum_{i=1}^n(\hat{y}_i-\bar{y})^2+\sum_{i=1}^ne_i(\hat{y}_i-\bar{y})}{\sqrt{\sum_{i=1}^n(y_i-\bar{y})^2\sum_{i=1}^n(\hat{y}_i-\bar{y})^2}}\right)^2\\
+    &=\left(\frac{\sum_{i=1}^n(\hat{y}_i-\bar{y})^2+\sum_{i=1}^n\hat{y}_ie_i-\bar{y}\sum_{i=1}^ne_i}{\sqrt{\sum_{i=1}^n(y_i-\bar{y})^2\sum_{i=1}^n(\hat{y}_i-\bar{y})^2}}\right)^2\\
+    &=\frac{\left(\sum_{i=1}^n(\hat{y}_i-\bar{y})^2\right)^2}{\sum_{i=1}^n(y_i-\bar{y})^2\sum_{i=1}^n(\hat{y}_i-\bar{y})^2}\\
+    &=\frac{\sum_{i=1}^n(\hat{y}_i-\bar{y})^2}{\sum_{i=1}^n(y_i-\bar{y})^2}\\
+    &=R^2.
+\end{align*}
+
+\end{document}
