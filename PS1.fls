@@ -1,0 +1,12 @@
+PWD /Users/kenthirose/Documents/Econometrics-1
+INPUT /Users/kenthirose/Library/TinyTeX/texmf.cnf
+INPUT /Users/kenthirose/Library/TinyTeX/texmf-dist/web2c/texmf.cnf
+INPUT /Users/kenthirose/Library/TinyTeX/texmf-var/web2c/pdftex/pdflatex.fmt
+INPUT /Users/kenthirose/Documents/Econometrics-1/PS1.tex
+OUTPUT PS1.log
+INPUT /Users/kenthirose/Library/TinyTeX/texmf-dist/tex/latex/base/article.cls
+INPUT /Users/kenthirose/Library/TinyTeX/texmf-dist/tex/latex/base/article.cls
+INPUT /Users/kenthirose/Library/TinyTeX/texmf-dist/tex/latex/base/size11.clo
+INPUT /Users/kenthirose/Library/TinyTeX/texmf-dist/tex/latex/base/size11.clo
+INPUT /Users/kenthirose/Library/TinyTeX/texmf-dist/tex/latex/base/size11.clo
+INPUT /Users/kenthirose/Library/TinyTeX/texmf-dist/fonts/tfm/public/cm/cmr10.tfm

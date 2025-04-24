@@ -28,6 +28,48 @@
 \begin{document}
 \maketitle
 
+\section*{2}
+$$
+\begin{aligned}
+(y-g(x))^2 & =E\left[\left[(y-E[y \mid x])+(E[y \mid x]-y(x))]^2 \mid x\right]\right. \\
+& =E\left[(y-E[y \mid x])^2+(E[y \mid x]-g(x))^2 \mid x\right] \\
+& =E[2(y-E[y \mid x])(E[y \mid x]-g(x)) \mid x] \\
+E\left[(y-g(x))^2 \mid x\right] & \left.=E[\{(y-E[y \mid x])+(E[y \mid x]-g(x))\}^2 \mid x\right] \\
+& =E\left[(y-E[y \mid x])^2+(E[y \mid x]-g(x))^2 \mid x\right] \\
+& +E[2(y-E[y \mid x])(E[y \mid x]-g(x)) \mid x] \\
+& \left.=E\left[(y-E[y \mid x])^2+(E[y \mid x]-g(x)\right)^2 \mid x\right] \\
+& +E[y E[y \mid x] \mid x]-E[y g(x) \mid x]-E\left[E[y \mid x]^2 \mid x\right]+E[g(x) E[y \mid x] \mid x]
+\end{aligned}
+$$
+
+Since $E[y \mid x]$ and $g(x)$ are function of $x$,
+
+$$
+\begin{aligned}
+& E[y E[y \mid x] \mid x]=E[y \mid x] \cdot E[y \mid x] \\
+& E[E[y \mid x]^2 \mid x]=E[y \mid x]^2 \\
+& E[y g(x) \mid x]=g(x) E[y \mid x] \\
+& E[g(x) E[y \mid x] \mid x]=g(x) E[y \mid x]
+\end{aligned}
+$$
+
+Thus
+$$
+\begin{aligned}
+& E[y E[y \mid x] \mid x]-E[y g(x) \mid x]-E\left[E[y \mid x]^2 \mid x\right]+E[g(x) E[y \mid x] \mid x] \\
+& =E[y \mid x]^2-E[y \mid x]^2+g(x) E[y \mid x]-g(x) E[y \mid x] \\
+& =0
+\end{aligned}
+$$
+
+Therefore
+$$
+\begin{aligned}
+& E\left[(y-y(x))^2 \mid x\right]-E\left[(y-E[y \mid x])^2 \mid x\right] \\
+& \quad=E\left[(E[y \mid x]-g(x))^2 \mid x\right]=(E[y \mid x]-g(x))^2 \geq 0
+\end{aligned}
+$$
+
 \section*{4}
 We have
 \begin{align*}
@@ -88,5 +130,43 @@ Now, denote the sample correlation coefficient between $y_i$ and $\hat{y}_i$ by 
     &=\frac{\sum_{i=1}^n(\hat{y}_i-\bar{y})^2}{\sum_{i=1}^n(y_i-\bar{y})^2}\\
     &=R^2.
 \end{align*}
+
+\section*{8}
+Let $S\left(\tilde{\beta_1}, \tilde{\beta_2}\right)=\sum_{i=1}^n\left(y_i-\tilde{\beta_1}-\tilde{\beta_2} x_i\right)^2$
+$$
+\left(\hat{\beta}_1, \hat{\beta}_2\right)=\underset{\tilde{\beta}_1, \hat{\beta}_2}{\operatorname{argmin}} S
+$$
+First-order condition is
+$$
+\begin{aligned}
+\frac{\partial S}{\partial \tilde{\beta}_1} & =2 \sum_{i=1}^n\left(\tilde{\beta_1}-y_i+\tilde{\beta_2} x_i\right) \\
+& =2\left(\tilde{\beta_1}-\frac{1}{n} \sum_{i=1}^n y_i+\frac{1}{n} \sum_{i=1}^n \tilde{\beta_2} x_i\right)=0 \\
+\frac{\partial S}{\partial \tilde{\beta}_2} & =2 \sum_{i=1}^n\left(x_i \tilde{\beta}_1-y_i x_i+\tilde{\beta}_2 x_i^2\right)
+\end{aligned}
+$$
+Substitute $n \tilde{\beta_1}=\sum_{i=1}^n y_i-\sum_{i=1}^n \tilde{\beta}_2 x_i$ into $\frac{\partial S}{\partial \tilde{\beta}_2}$
+$$
+\begin{aligned}
+& \sum_{i=1}^n x_i y_i-x_i^2 \tilde{\beta}_2-x_i\left(\sum_{i=1}^n y_i^n-\sum_{i=1}^n \tilde{\beta}_2 x_i\right)=0 \\
+& \begin{aligned}
+\tilde{\beta}_2 & =\frac{n \sum_{i=1}^n x_1 y_i-\sum_{i=1}^n x_i \sum_{i=1}^n y_i}{n \sum_{i=1}^n x_i^2-\left(\sum_{i=1}^n x_i\right)^2} \\
+n \sum_{i=1}^n x_i y_i-\sum_{i=1}^n x_i \sum_{i=1}^n y_i & =n \sum_{i=1}^n x_i y_i-\sum_{i=1}^n x_i \sum_{i=1}^n y_i+\sum_{i=1}^n x_i \sum_{i=1}^n y_i-\sum_{i=1}^n x_i \sum_{i=1}^n y_i \\
+& =n \sum_{i=1}^n x_i y_i-n \bar{x} \sum_{i=1}^n y_i - n \bar{y} \sum_{i=1}^n x_i+n^2 \bar{x} \bar{y} \\
+& =n \sum_{i=1}^n\left(x_i-\bar{x}\right)\left(y_i-\bar{y}\right)
+\end{aligned} \\
+& \begin{aligned}
+n \sum_{i=1}^n x_i^2-\left(\sum_{i=1}^n x_i\right)^2 & =n \sum_{i=1}
+^n x_i^2-2\left(\sum_{i=1}^n x_i\right)^2+\left(\sum_{i=1}^n x_i\right)^2 \\
+& =n \sum_{i=1}^n x_i^2-2 n \bar{x} \sum_{i=1}^n x_i=n^2 \bar{x}^2 \\
+& =n \sum_{i=1}^n\left(x_i-\bar{x}\right)^2 \\
+\end{aligned} \\
+& \tilde{\beta}_2=\frac{\sum_{i=1}^n\left(x_i-\bar{x}\right)\left(y_i-\bar{y}\right)}{\sum_{i=1}^n\left(x_i-\bar{x}\right)^2}
+\end{aligned}
+$$
+Since $\frac{\partial S}{\partial \tilde{\beta}_1}$ and $\frac{\partial S}{\partial \tilde{\beta}_2}$ monotonically increasing, $S$ has a minimum value at $\tilde{\beta}_2=\frac{\sum_{i=1}^n\left(x_i-\bar{x}\right)\left(y_i-\bar{y}\right)}{\sum_{i=1}^n\left(x_i-\bar{x}\right)^2}$
+Therefore 
+$$
+\hat{\beta}_2=\frac{\sum_{i=1}^n\left(x_i-\bar{x}\right)\left(y_i-\bar{y}\right)}{\sum_{i=1}^n\left(x_i-\bar{x}\right)^2}
+$$
 
 \end{document}
